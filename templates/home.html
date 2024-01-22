@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>Hello World</p>
+    <p>{{ user.username }}がログイン中</p>
+    <p>Last Name : {{ user.last_name }}</p>
+    <p>First Name : {{ user.first_name }}</p>
+    <p>email : {{ user.email }}</p>
+    <p>is_authenticated : {{ user.is_authenticated }}</p>
+    <p>backends: {{ backends }}</p>
+    <form action="{% url 'logout' %}" method="post" name="f_logout">
+        {% csrf_token %}
+        <input type="hidden" value="logout">
+        <a href="javascript:f_logout.submit()" class="logout nav-link">ログアウト</a>
+    </form>
 {% endblock %}
