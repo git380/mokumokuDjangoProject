@@ -1,0 +1,70 @@
+body {
+    background-color: #f0f0f0;
+    margin: 0; /* マージンを0に設定 */
+    padding: 0; /* パディングを0に設定 */
+    font-size: 16px; /* デフォルトフォントサイズを設定 */
+}
+
+/* アイコンのスタイル設定 */
+.bi {
+    color: #007BFF;
+}
+
+/* 名前のスタイル設定 */
+.name {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.icon {
+    display: flex;
+    font-size: 7rem;
+    margin-top: 125px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.icon-wrapper1,
+.icon-wrapper2,
+.icon-wrapper3,
+.icon-wrapper4 {
+    font-size: 7rem;
+}
+
+.icon-wrapper1 {
+    margin-right: 100px; /* Adjusted the margin to be smaller */
+}
+
+.icon-wrapper2 {
+    margin-right: 100px; /* Adjusted the margin to be smaller */
+}
+
+.icon-wrapper3 {
+    margin-right: 100px; /* Adjusted the margin to be smaller */
+}
+
+.icon-wrapper4 {
+    margin-right: 100px; /* Adjusted the margin to be smaller */
+}
+
+.col-auto{
+    font-size: 7rem;
+}
+
+
+/* コンテナのスタイル設定 */
+.container-fluid {
+    text-align: center;
+    padding: 50px; /* 上部、下部のパディングを設定 */
+}
+
+.logout {
+    font-size: 3rem;
+    position: fixed;
+    top: 0%;
+    right: 2%;  /* 右からの距離を調整 */
+    /*z-index: 1000;  !* ページ上の他の要素よりも手前に表示 *!*/
+}
+
+
