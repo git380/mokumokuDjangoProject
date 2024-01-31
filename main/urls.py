@@ -10,4 +10,5 @@ urlpatterns = [
     path('chat_make/', views.chat_make, name='chat_make'),
     path('chat/', views.chat, name='chat'),
     path('paint/', views.paint, name='paint'),
+    path('chat_log/', views.chat_log, name='chat_log'),
 ]

@@ -1,6 +1,7 @@
+import uuid
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-import uuid
 
 
 @login_required
@@ -43,3 +44,8 @@ def chat(request):
 def paint(request):
     if request.method == 'POST':
         return render(request, 'chat/paint.html', {'uuid': request.POST['uuid']})
+
+
+@login_required
+def chat_log(request):
+    return render(request, 'chat_log/index.html')
