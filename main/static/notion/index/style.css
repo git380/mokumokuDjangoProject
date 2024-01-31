@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+}
+
+.herder {
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-house{
+    font-size: 40px;
+}
+
+.search {
+    width: 300px;
+    padding: 20px;
+    border-radius: 50px;
+    border: 2px solid #cccccc; /* 下線を明示的に設定 */
+    /* その他のスタイルを追加できます */
+}
+
+
+.post-content a {
+    color: #1da1f2; /* リンクのテキストカラーを設定 */
+    text-decoration: none; /* リンクの下線を非表示にする */
+}
+
+.post-content a:hover {
+    text-decoration: underline; /* リンクにホバーしたときに下線を表示 */
+}
+
+/*Notion説明*/
+#help-link {
+    color: #1da1f2;
+}
+
+.main-container {
+    width: 80%;
+    margin: 0 auto; /*中央揃え*/
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column; /*投稿内容の要素が縦に配置される*/
+}
+
+/*投稿内容のレイアウト*/
+.post-item {
+    display: flex;
+    flex-direction: column; /*投稿内容を立て並びで表示*/
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px; /*ボーダーを丸みづける*/
+    margin-top: 20px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.post-content {
+    flex: 1;
+    word-wrap: break-word;
+}
+
+/*投稿画面を開くボタンのレイアウト*/
+#open-input {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000000;
+
+}
+
+.input-formBox {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+}
+
+/*投稿画面のレイアウト*/
+.input-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/*投稿画面の入力欄レイアウト*/
+.form {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+/*ボタンのレイアウト*/
+.button-container {
+    display: flex;
+    justify-content: space-between; /*ボタンを親要素の両端に寄せるためのものです*/
+}
+
+button {
+    margin-top: 10px; /* ボタンと入力フォームの間に余白を追加 */
+    padding: 10px 20px; /*縦横の余白*/
+    border-radius: 4px;
+    cursor: pointer; /*触れた際にカーソルの見た目変更*/
+
+    transition: background-color 0.3s ease;
+    background-color: #1da1f2;
+    color: #fff; /*文字の色*/
+    border: none; /*ボタンの枠線を消す*/
+}
+
+button:hover {
+    background-color: #89dbff; /* ホバー時の背景色 */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
