@@ -42,12 +42,12 @@
 
         <!--    ID・QR選択遷移ボタン-->
         <div class="icon-wrapper2" data-bs-toggle="tooltip" data-bs-html="true" title="ID・QR選択">
-            <a href=""><i class="bi bi-qr-code-scan"></i></a>
+            <a href="{% url 'chat_join' %}"><i class="bi bi-qr-code-scan"></i></a>
         </div>
 
         <!--    グループチャット遷移ボタン-->
         <div class="icon-wrapper3" data-bs-toggle="tooltip" data-bs-html="true" title="グループチャット">
-            <a href=""><i class="bi bi-chat-left-fill"></i></a>
+            <a href="{% url 'chat_make' %}"><i class="bi bi-chat-left-fill"></i></a>
         </div>
 
         <!--    チャットログ遷移ボタン-->

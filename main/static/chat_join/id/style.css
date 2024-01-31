@@ -1,0 +1,34 @@
+/* styles.css */
+
+/* ボタンのスタイル */
+.back-button,
+.chat-button {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* ボタンのアイコンに余白を追加 */
+.back-button i,
+.chat-button i {
+    margin-right: 8px;
+}
+
+/* ラジオボタンのスタイル */
+.form-check-label {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+/* ID入力フォームと検索ボタンのスタイル */
+.input-group {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+/* センタリング用スタイル */
+.text-center {
+    text-align: center;
+    margin: 0 auto;
+}

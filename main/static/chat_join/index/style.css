@@ -1,0 +1,47 @@
+/* styles.css */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    padding: 30px;
+}
+
+.row {
+    margin-top: 30px;
+}
+
+/* クラスを使ってアイコンのスタイルを調整 */
+i.bi {
+    color: #007bff; /* アイコンの色を青に設定 */
+    cursor: pointer; /* アイコンをクリッカブルにする */
+}
+
+/* アイコンのホバーエフェクト */
+i.bi:hover {
+    color: #0056b3; /* ホバー時の色を変更 */
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header h1{
+    margin-left: 45%;
+}
