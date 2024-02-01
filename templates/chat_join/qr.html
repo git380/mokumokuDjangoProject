@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>QR読み込み</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: auto;
+            padding: 1rem;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        pre {
+            text-align: left;
+        }
+
+        #canvas {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--カメラ-->
+<div id="loading">📱 ブラウザのカメラの使用を許可してください。</div>
+<!-- キャンバス要素でQRコードを描画するための準備 -->
+<canvas id="canvas" hidden=""></canvas>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script>
+    // カメラの映像を表示するための video 要素を作成
+    const video = document.createElement('video');
+    // キャンバス要素とその 2D コンテキストを取得
+    const canvasElement = document.getElementById('canvas');
+    const canvas = canvasElement.getContext('2d');
+    // ローディングメッセージ
+    const loading = document.getElementById('loading');
+    // QR コード読み取りフラグの初期化
+    let isReadQR = false;
+
+    // ユーザーにカメラのアクセス許可を求め、成功時にカメラの映像を取得し、映像を表示して QR コードを読み取るための処理
+    navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+        .then((stream) => {
+            // カメラの映像を video 要素にセットし、再生を開始
+            video.srcObject = stream;
+            video.setAttribute('playsinline', true);
+            video.play();
+            // メインループを開始
+            requestAnimationFrame(tick);
+        });
+
+    // メインループ関数(毎フレームごとに実行される)
+    function tick() {
+        // ローディングメッセージを更新
+        loading.textContent = '⌛ ロード中...';
+
+        // カメラの映像が利用可能な場合
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            loading.hidden = true; // ローディングメッセージを非表示
+            canvasElement.hidden = false; // キャンバスを表示
+            // キャンバスのサイズをカメラ映像に合わせる
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+
+            // カメラの映像をキャンバスに描画
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+
+            // キャンバスから画像データを取得
+            const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+            // jsQR ライブラリを使用して QR コードを読み取る
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {inversionAttempts: 'dontInvert'});
+            // QR コードが検出され、まだ読み取っていない場合
+            if (code && !isReadQR) {
+                // chatのQRコードだった場合
+                // if (code.data === 'aaa')
+
+                // QR コードの内容に基づいてページをリダイレクト
+                location.href = code.data;
+                isReadQR = true; // 読み取りフラグをセット
+            }
+        }
+        requestAnimationFrame(tick); // 次のフレームに進む
+    }
+</script>
+</body>
+</html>

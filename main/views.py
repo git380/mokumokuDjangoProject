@@ -1,7 +1,7 @@
 import uuid
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 @login_required
@@ -30,6 +30,20 @@ def id_search(request):
 
 
 @login_required
+def qr_search(request):
+    return render(request, 'chat_join/qr.html')
+
+
+@login_required
+def chat_join_qr(request, chat_id):
+    try:
+        request.session['uuid'] = str(uuid.UUID(chat_id))
+        return redirect('chat')
+    except ValueError:
+        return redirect('home')
+
+
+@login_required
 def chat_make(request):
     return render(request, 'chat_make/index.html', {'uuid': uuid.uuid4()})
 
@@ -38,6 +52,17 @@ def chat_make(request):
 def chat(request):
     if request.method == 'POST':
         return render(request, 'chat/index.html', {'uuid': request.POST['uuid']})
+    uuid_value = request.session['uuid']
+    if uuid_value:
+        del request.session['uuid']
+        return render(request, 'chat/index.html', {'uuid': uuid_value})
+    return redirect('home')
+
+
+@login_required
+def chat_qr(request):
+    if request.method == 'POST':
+        return render(request, 'chat/qr.html', {'uuid': request.POST['uuid']})
 
 
 @login_required
