@@ -14,8 +14,6 @@
     <input type="text" id="searchInput" class="search" placeholder="検索">
 </div>
 
-<input type="hidden" id="idInput" value="{{ user.username }}">
-
 <div class="main-container">
     <div class="post-container" id="post-container"></div> <!-- 投稿内容を受け取るクラス-->
 
@@ -50,6 +48,10 @@
     </div>
 </div>
 
+<script>
+    const userid = '{{ user.username }}';
+    const fullname = '{{ user.last_name }} {{ user.first_name }}'
+</script>
 <script src="{% static 'notion/index/inputScript.js' %}"></script>
 </body>
 </html>

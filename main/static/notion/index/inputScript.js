@@ -13,7 +13,7 @@ webSocket.onopen = () => {
         .then(notionHistory => {
             for (const key in notionHistory) {
                 const data = notionHistory[key];
-                inputContentControl(key, data[0], data[1], data[2], data[3]);
+                inputContentControl(key, data[0], data[1], data[2], data[3], data[4]);
             }
         })
         .catch(error => console.error('エラー:', error));
@@ -21,7 +21,7 @@ webSocket.onopen = () => {
 // メッセージを受信したときの処理
 webSocket.onmessage = event => {
     const data = JSON.parse(event.data);
-    inputContentControl(data[0], data[1], data[2], data[3], data[4]);
+    inputContentControl(data[0], data[1], data[2], data[3], data[4], data[5]);
 };
 // WebSocketの接続が閉じたときの処理
 webSocket.onclose = () => console.log('WebSocketが閉じられました。');
@@ -54,14 +54,15 @@ function goBack() {
 }
 
 // ユーザーアイコン、投稿内容、投稿画像を含む投稿アイテムを作成する
-function inputContentControl(id, userid, title, link, tag) {
+function inputContentControl(id, userid, fullname, title, link, tag) {
     // ユーザーアイコンを作成し追加
     const userIcon = document.createElement('div');
     userIcon.classList.add('user-icon');
     // ユーザー名の要素を作成し追加
     const usernameElement = document.createElement('div');
     usernameElement.classList.add('username');
-    usernameElement.innerText = userid;
+    usernameElement.id = `userid-${userid}`;
+    usernameElement.innerText = fullname;
     userIcon.appendChild(usernameElement);
 
     // タイトルにリンク付きの要素を作成
@@ -95,7 +96,6 @@ function inputContentControl(id, userid, title, link, tag) {
 
 // 送信ボタンが押されると、入力された文字を送る
 function sendMessage() {
-    const userid = document.getElementById('idInput').value;
     const tagElement = document.getElementById('input-tag');
     const inputTitleElement = document.getElementById('input-title');
     const inputLinkElement = document.getElementById('input-link');
@@ -123,6 +123,7 @@ function sendMessage() {
     webSocket.send(JSON.stringify([
         Date.now(),
         userid,
+        fullname,
         title,
         link,
         formattedTag // 修正したフォーマットのタグを送信
