@@ -47,6 +47,7 @@ function goBack() {
     if (!confirmation) return;
 
     //入力内容をリセットして閉じる
+    document.getElementById('input-tag').value = '';
     document.getElementById('input-title').value = '';
     document.getElementById('input-link').value = '';
     closeInputArea();
@@ -57,10 +58,6 @@ function inputContentControl(id, userid, title, link, tag) {
     // ユーザーアイコンを作成し追加
     const userIcon = document.createElement('div');
     userIcon.classList.add('user-icon');
-    // ユーザーアイコンの画像要素を作成し追加
-    const iconImage = document.createElement('img');
-    iconImage.src = 'path/to/your/user-icon.jpg';
-    userIcon.appendChild(iconImage);
     // ユーザー名の要素を作成し追加
     const usernameElement = document.createElement('div');
     usernameElement.classList.add('username');
@@ -75,9 +72,8 @@ function inputContentControl(id, userid, title, link, tag) {
 
     // タグを表示する要素を作成
     const tagElement = document.createElement('div');
-    const formattedTag = tag.startsWith('#') ? tag : `#${tag}`; // タグの先頭に '#' を追加する
     tagElement.classList.add('post-tag');
-    tagElement.innerText = formattedTag;
+    tagElement.innerText = tag;
 
     // タグとリンクから投稿内容を作成し追加
     const postContentDiv = document.createElement('div');
@@ -107,6 +103,7 @@ function sendMessage() {
     //trimは空白文字改行を削除するメソッド
     const title = inputTitleElement.value.trim();
     const link = inputLinkElement.value.trim();
+    const tag = tagElement.value.trim(); // タグを取得してトリムする
 
     //エラー処理
     if (!title) {
@@ -119,13 +116,16 @@ function sendMessage() {
         return;
     }
 
+    // タグが空でなければ '#' を付ける
+    const formattedTag = tag ? (tag.startsWith('#') ? tag : `#${tag}`) : '';
+
     // JavaScriptオブジェクトをJSONへ変換して送信
     webSocket.send(JSON.stringify([
         Date.now(),
         userid,
         title,
         link,
-        tagElement.value
+        formattedTag // 修正したフォーマットのタグを送信
     ]));
 
     //投稿フォーム内の情報を削除
@@ -139,10 +139,10 @@ function sendMessage() {
 function searchPosts() {
     const postItems = document.getElementById('post-container').getElementsByClassName('post-item');
     // 各投稿をループし、検索キーワードが含まれているか確認
-    postItems.forEach(postItem => {
+    Array.from(postItems).forEach(postItem => {
         // 投稿が検索キーワードを含んでいれば表示し、それ以外は非表示にする
         postItem.style.display = postItem.querySelector('.post-content').textContent.toLowerCase().includes(document.getElementById('searchInput').value.toLowerCase()) ? 'flex' : 'none';
-    })
+    });
 }
 
 //入力フォームを非表示にする関数
