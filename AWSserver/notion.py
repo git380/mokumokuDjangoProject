@@ -20,8 +20,18 @@ async def handle_client(websocket):  # 接続が確立された
             # JSONのチャット履歴を追加
             with open('json/notion_history.json', 'r', encoding='utf-8') as json_file_r:
                 notion_history = json.load(json_file_r)
-            # JSONチャット履歴を辞書に追加(キーはStringに変換)
-            notion_history[str(data[0])] = data[1:]
+            if isinstance(data, list):
+                # JSONチャット履歴を辞書に追加
+                notion_history[data[0]] = data[1:]
+            else:
+                # JSONチャット履歴を辞書に追加
+                if data['data'][2]:
+                    notion_history[data['data'][0]][5].append(data['data'][1])
+                else:
+                    notion_history[data['data'][0]][5].remove(data['data'][1])
+                data['data'].pop()
+                data['data'][1] = notion_history[data['data'][0]][5]
+                message = json.dumps(data)
             with open('json/notion_history.json', 'w', encoding='utf-8') as json_file_w:
                 json.dump(notion_history, json_file_w, ensure_ascii=False, indent=4)
             # クライアントからのメッセージをすべてのクライアントにブロードキャスト

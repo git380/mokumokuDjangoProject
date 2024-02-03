@@ -10,7 +10,7 @@ body {
     align-items: center;
 }
 
-.bi-question-circle{
+.bi-question-circle {
     margin-left: 20px;
 }
 
@@ -18,7 +18,7 @@ body {
     text-align: center; /* 水平方向の中央揃え */
 }
 
-.bi-house{
+.bi-house {
     font-size: 40px;
 }
 
@@ -164,6 +164,14 @@ button:hover {
     z-index: 1;
 }
 
+/*イイねボタン*/
+.checkbox-span{
+    color: red;
+}
+input[type="checkbox"] {
+    display: none; /* チェックボックス自体は非表示にする */
+}
+
 @media (max-width: 1000px) {
     .form {
         font-size: 35px;
@@ -174,23 +182,23 @@ button:hover {
         margin-bottom: 50px;
     }
 
-   .post-container{
-       font-size: 35px;
-   }
+    .post-container {
+        font-size: 35px;
+    }
 
-   #open-input{
-       font-size: 30px;
-   }
+    #open-input {
+        font-size: 30px;
+    }
 
-   #searchInput{
-       font-size: 35px;
-   }
+    #searchInput {
+        font-size: 35px;
+    }
 
-   #help-link{
-       font-size: 30px;
-   }
+    #help-link {
+        font-size: 30px;
+    }
 
-   #form-button{
-       font-size: 30px;
-   }
+    #form-button {
+        font-size: 30px;
+    }
 }

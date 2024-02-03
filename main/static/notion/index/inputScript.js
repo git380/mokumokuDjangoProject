@@ -13,7 +13,7 @@ webSocket.onopen = () => {
         .then(notionHistory => {
             for (const key in notionHistory) {
                 const data = notionHistory[key];
-                inputContentControl(key, data[0], data[1], data[2], data[3], data[4]);
+                inputContentControl(key, data[0], data[1], data[2], data[3], data[4], data[5]);
             }
         })
         .catch(error => console.error('エラー:', error));
@@ -21,7 +21,16 @@ webSocket.onopen = () => {
 // メッセージを受信したときの処理
 webSocket.onmessage = event => {
     const data = JSON.parse(event.data);
-    inputContentControl(data[0], data[1], data[2], data[3], data[4], data[5]);
+    // イイねボタン処理
+    if (data['data_type'] === 'like') {
+        const existingMessage = document.getElementById(`post-item-${data['data'][0]}`);
+        const checking = data['data'][1].includes(userid);
+        existingMessage.querySelector('.checkbox').checked = checking;
+        existingMessage.querySelector('.checkbox-span').textContent = checking ? '♥' : '♡';
+        existingMessage.querySelector('.like-count').textContent = data['data'][1].length;
+    }
+    //notion投稿処理
+    else inputContentControl(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
 };
 // WebSocketの接続が閉じたときの処理
 webSocket.onclose = () => console.log('WebSocketが閉じられました。');
@@ -54,14 +63,14 @@ function goBack() {
 }
 
 // ユーザーアイコン、投稿内容、投稿画像を含む投稿アイテムを作成する
-function inputContentControl(id, userid, fullname, title, link, tag) {
+function inputContentControl(id, in_userid, fullname, title, link, tag, like) {
     // ユーザーアイコンを作成し追加
     const userIcon = document.createElement('div');
     userIcon.classList.add('user-icon');
     // ユーザー名の要素を作成し追加
     const usernameElement = document.createElement('div');
     usernameElement.classList.add('username');
-    usernameElement.id = `userid-${userid}`;
+    usernameElement.id = `userid-${in_userid}`;
     usernameElement.innerText = fullname;
     userIcon.appendChild(usernameElement);
 
@@ -84,9 +93,47 @@ function inputContentControl(id, userid, fullname, title, link, tag) {
 
     // コンテナを作成し、post-itemというクラスを指定（CSSでも使っている）
     const postItem = document.createElement('div');
+    postItem.id = `post-item-${id}`; // idを指定
     postItem.classList.add('post-item');
     postItem.appendChild(userIcon);
     postItem.appendChild(postContentDiv); // 投稿内容にリンクとタイトルを追加
+
+    // 自分のイイね状況取得
+    const checking = like.includes(userid);
+
+    // チェックボックスを作成
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.className = 'checkbox';
+    checkbox.type = 'checkbox';
+    checkbox.checked = checking;
+    label.appendChild(checkbox);
+
+    // span要素を作成
+    const span = document.createElement('span');
+    span.className = 'checkbox-span';
+    span.textContent = checking ? '♥' : '♡';
+    label.appendChild(span);
+
+    const likes = document.createElement('span');
+    likes.className = 'like-count';
+    likes.textContent = like.length;
+    label.appendChild(likes);
+
+    // チェックボックスが変更されたときの処理
+    checkbox.addEventListener('change', () => {
+        label.querySelector('.checkbox-span').textContent = checkbox.checked ? '♥' : '♡';
+        // JSONに戻してチェックボックスの状態をサーバへ送信
+        webSocket.send(JSON.stringify({
+            'data_type': 'like',
+            'data': [
+                id,
+                userid,
+                checkbox.checked
+            ]
+        }));
+    });
+    postItem.appendChild(label);
 
     // post-containerは投稿要素を表示するためのコンテナ
     const postContainer = document.getElementById('post-container');
@@ -126,7 +173,8 @@ function sendMessage() {
         fullname,
         title,
         link,
-        formattedTag // 修正したフォーマットのタグを送信
+        formattedTag,
+        []
     ]));
 
     //投稿フォーム内の情報を削除
