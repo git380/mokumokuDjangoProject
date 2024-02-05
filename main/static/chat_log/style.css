@@ -54,3 +54,30 @@ body {
 .message-container strong {
     color: #333;
 }
+
+/* モバイル用スタイル */
+@media (max-width: 767px) {
+    .chat-list {
+        position: relative;
+        width: 100%;
+        max-width: 180px; /* チャットリストの最大幅を調整 */
+        padding: 10px;
+        box-shadow: none;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 60px; /* メッセージコンテンツの高さを確保するためのマージン追加 */
+    }
+
+    .chat-room {
+        margin-bottom: 10px;
+    }
+
+    .chat-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .message-container {
+        max-width: 100%;
+    }
+}

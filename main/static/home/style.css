@@ -68,3 +68,52 @@ body {
 }
 
 
+/* モバイル用スタイル */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container-fluid {
+        padding: 20px;
+    }
+
+    .row {
+        margin-bottom: 20px;
+    }
+
+    .col-auto {
+        margin-bottom: 20px;
+    }
+
+    .icon {
+        font-size: 5rem;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column; /* 縦に並べる */
+        align-items: center; /* 中央寄せ */
+    }
+
+    .icon-wrapper1,
+    .icon-wrapper2,
+    .icon-wrapper3,
+    .icon-wrapper4 {
+        font-size: 5rem;
+        margin-bottom: 10px;
+    }
+
+    .icon-wrapper1,
+    .icon-wrapper2 {
+        order: -1; /* 上に移動 */
+    }
+
+    .icon-wrapper3,
+    .icon-wrapper4 {
+        order: 1; /* 下に移動 */
+    }
+
+    .logout {
+        font-size: 2rem;
+    }
+}

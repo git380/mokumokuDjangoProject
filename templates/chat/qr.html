@@ -3,21 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>QR生成</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         #qrcode {
-            width: 160px;
-            height: 160px;
+            width: 80%; /* 画面幅の80%に設定 */
+            max-width: 240px; /* 最大幅を240pxに制限 */
+            height: auto;
             margin-top: 15px;
+        }
+
+        /* ボタンのスタイル調整 */
+        button {
+            margin-top: 50px;
         }
     </style>
 </head>
-<body>
+<body class="container mt-5">
+<div id="qrcode"></div>
 <form action="{% url 'chat' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="uuid" value="{{ uuid }}">
-    <button>戻る</button>
+    <button class="btn btn-primary">戻る</button>
 </form>
-<div id="qrcode"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     new QRCode("qrcode").makeCode('http://localhost:8000/chat_join_qr/{{ uuid }}');

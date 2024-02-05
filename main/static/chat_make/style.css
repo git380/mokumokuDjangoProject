@@ -5,22 +5,20 @@ body {
 }
 
 header {
-    background-color: #343a40;
+    background-color: #333;
     color: #fff;
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 header a {
     text-decoration: none;
     color: #fff;
-    margin-right: 15px;
 }
 
 header h1 {
-    margin: 0;
+    margin-left: 45%;
 }
 
 header div {
@@ -64,17 +62,27 @@ button:hover {
     font-size: 16px;
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    header div {
-        margin-top: 10px;
+@media (max-width: 1000px) {
+    body {
+        font-size: 30px; /* モバイル画面時のフォントサイズを調整 */
     }
 
     header h1 {
-        margin-bottom: 0;
+        font-size: 1.5rem; /* モバイル画面時のヘッダータイトルのフォントサイズを調整 */
+    }
+
+    label {
+        font-size: 50px; /* 入力フォームラベルのフォントサイズを調整 */
+    }
+
+    input {
+        font-size: 35px; /* 入力フォームのフォントサイズを調整 */
+        padding: 8px; /* 入力フォームの余白を調整 */
+        margin-bottom: 10px; /* 入力フォームの下の余白を調整 */
+    }
+
+    button {
+        font-size: 30px; /* ボタンのフォントサイズを調整 */
+        padding: 8px 16px; /* ボタンの余白を調整 */
     }
 }
