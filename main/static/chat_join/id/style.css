@@ -6,6 +6,10 @@
     color: #333;
 }
 
+.bi-house {
+    font-size: 40px;
+}
+
 /* ボタンのアイコンに余白を追加 */
 .back-button i,
 .chat-button i {

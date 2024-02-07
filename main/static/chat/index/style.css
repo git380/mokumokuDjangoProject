@@ -3,6 +3,10 @@
     color: white; /* アイコンのテキストカラーを白に設定 */
 }
 
+.bi-house {
+    font-size: 40px;
+}
+
 /* メッセージ入力欄 */
 .chat-input {
     position: fixed;
@@ -113,6 +117,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 90px;
 }
 
 header a {

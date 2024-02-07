@@ -2,6 +2,10 @@ body {
     margin: 20px;
 }
 
+.bi-house {
+    font-size: 40px;
+}
+
 canvas {
     border: 5px solid #ccc;
     cursor: crosshair; /* カーソルを十字に設定 */
@@ -30,6 +34,7 @@ header {
     background-color: #333;
     color: #fff;
     padding: 15px 20px 15px;
+       height: 90px;
 }
 
 header a {

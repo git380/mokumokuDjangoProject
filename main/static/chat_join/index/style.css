@@ -1,7 +1,10 @@
-/* styles.css */
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
+}
+
+.bi-house {
+    font-size: 40px;
 }
 
 .container {
@@ -10,12 +13,6 @@ body {
 
 .row {
     margin-top: 30px;
-}
-
-/* クラスを使ってアイコンのスタイルを調整 */
-i.bi {
-    color: #007bff; /* アイコンの色を青に設定 */
-    cursor: pointer; /* アイコンをクリッカブルにする */
 }
 
 /* アイコンのホバーエフェクト */
@@ -35,6 +32,7 @@ header {
     padding: 15px 20px;
     display: flex;
     align-items: center;
+    height: 90px;
 }
 
 header a {

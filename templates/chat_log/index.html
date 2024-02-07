@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'chat_log/style.css' %}">
 </head>
-
 <body>
+<header>
+    <a href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+</header>
+
 <input type="hidden" id="client_id" value="{{ user.username }}">
 
 <!--グループ名一覧-->

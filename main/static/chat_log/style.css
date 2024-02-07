@@ -1,10 +1,42 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
+    margin: 0; /* ボディのマージンをリセット */
 }
 
+.bi-house {
+    font-size: 40px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    height: 90px;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+header h1 {
+    margin-left: 45%;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+/* コンテンツエリア */
+.content {
+    margin-top: 100px; /* ヘッダーの下にスペースを作成 */
+    display: flex;
+}
+
+/* チャットリスト */
 .chat-list {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
@@ -12,8 +44,8 @@ body {
     position: fixed;
     width: 250px;
     padding: 10px;
-    height: 100%;
-    top: 0;
+    top: 90px; /* ヘッダーの下に配置 */
+    bottom: 0;
     left: 0;
 }
 
@@ -36,13 +68,10 @@ body {
 
 .chat-content {
     padding: 20px;
-    flex-grow: 1;
-    max-width: 500px;
-    text-align: left;
-    margin-left: 320px;
+    max-width: 800px; /* 必要に応じて調整 */
+    margin: 20px auto; /* 画面中央に配置 */
 }
 
-/* スタイル変更 */
 .message-container {
     background-color: #e2e2e2;
     border-radius: 10px;
@@ -55,17 +84,15 @@ body {
     color: #333;
 }
 
-/* モバイル用スタイル */
 @media (max-width: 767px) {
+    .content {
+        margin-top: 70px; /* ヘッダーの下にスペースを作成 */
+    }
+
     .chat-list {
-        position: relative;
-        width: 100%;
-        max-width: 180px; /* チャットリストの最大幅を調整 */
-        padding: 10px;
-        box-shadow: none;
-        height: auto;
-        overflow-y: auto;
-        margin-bottom: 60px; /* メッセージコンテンツの高さを確保するためのマージン追加 */
+        width: 100%; /* モバイルの場合は全体の幅いっぱいに広げる */
+        max-width: 150px; /* 最大幅を解除 */
+        top: 90px; /* ヘッダーの下に配置 */
     }
 
     .chat-room {
@@ -73,11 +100,11 @@ body {
     }
 
     .chat-content {
-        margin-left: 0;
+        margin-left: 180px; /* チャットリストの幅を考慮して右にずらす */
         padding: 10px;
     }
 
     .message-container {
-        max-width: 100%;
+        max-width: 200px; /* チャットリストの幅を考慮して幅を調整 */
     }
 }
