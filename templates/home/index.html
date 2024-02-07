@@ -37,22 +37,32 @@
     <div class="icon">
         <!--    Notionに遷移するボタン-->
         <div class="icon-wrapper1" data-bs-toggle="tooltip" data-bs-html="true" title="Notion投稿">
-            <a href="{% url 'notion' %}"><i class="bi bi-pencil"></i></a>
+            <a href="{% url 'notion' %}"><i class="bi bi-pencil"></i></a><br>
+            <h5>Notion投稿</h5>
         </div>
 
         <!--    ID・QR選択遷移ボタン-->
         <div class="icon-wrapper2" data-bs-toggle="tooltip" data-bs-html="true" title="ID・QR選択">
-            <a href="{% url 'chat_join' %}"><i class="bi bi-qr-code-scan"></i></a>
+            <a href="{% url 'chat_join' %}"><i class="bi bi-qr-code-scan"></i></a><br>
+            <h5>ID・QR検索</h5>
         </div>
 
-        <!--    グループチャット遷移ボタン-->
-        <div class="icon-wrapper3" data-bs-toggle="tooltip" data-bs-html="true" title="グループチャット">
-            <a href="{% url 'chat_make' %}"><i class="bi bi-chat-left-fill"></i></a>
+        <!--    グループチャット作成ボタン-->
+        <div class="icon-wrapper3" data-bs-toggle="tooltip" data-bs-html="true" title="グループチャット作成">
+            <a href="{% url 'chat_make' %}"><i class="bi bi-chat-left-fill"></i></a><br>
+            <h5>グループチャット作成</h5>
+        </div>
+
+         <!--    前回のチャットに戻るボタン-->
+        <div class="icon-wrapper5" data-bs-toggle="tooltip" data-bs-html="true" title="前回のチャット">
+            <a href="{% url 'chat' %}"><i class="bi bi-chat-left-text-fill"></i></a><br>
+            <h5>前回のチャット</h5>
         </div>
 
         <!--    チャットログ遷移ボタン-->
         <div class="icon-wrapper4" data-bs-toggle="tooltip" data-bs-html="true" title="チャットログ">
-            <a href="{% url 'chat_log' %}"><i class="bi bi-clock-history"></i></a>
+            <a href="{% url 'chat_log' %}"><i class="bi bi-clock-history"></i></a><br>
+            <h5>チャットログ</h5>
         </div>
     </div>
 </div>

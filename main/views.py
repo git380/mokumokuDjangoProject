@@ -51,11 +51,10 @@ def chat_make(request):
 @login_required
 def chat(request):
     if request.method == 'POST':
+        request.session['uuid'] = request.POST['uuid']
         return render(request, 'chat/index.html', {'uuid': request.POST['uuid']})
-    uuid_value = request.session['uuid']
-    if uuid_value:
-        del request.session['uuid']
-        return render(request, 'chat/index.html', {'uuid': uuid_value})
+    if 'uuid' in request.session:
+        return render(request, 'chat/index.html', {'uuid': request.session['uuid']})
     return redirect('home')
 
 

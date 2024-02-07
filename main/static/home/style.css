@@ -2,7 +2,6 @@ body {
     background-color: #f0f0f0;
     margin: 0; /* マージンを0に設定 */
     padding: 0; /* パディングを0に設定 */
-    font-size: 16px; /* デフォルトフォントサイズを設定 */
 }
 
 /* アイコンのスタイル設定 */
@@ -28,24 +27,10 @@ body {
 .icon-wrapper1,
 .icon-wrapper2,
 .icon-wrapper3,
-.icon-wrapper4 {
-    font-size: 7rem;
-}
-
-.icon-wrapper1 {
-    margin-right: 100px; /* Adjusted the margin to be smaller */
-}
-
-.icon-wrapper2 {
-    margin-right: 100px; /* Adjusted the margin to be smaller */
-}
-
-.icon-wrapper3 {
-    margin-right: 100px; /* Adjusted the margin to be smaller */
-}
-
-.icon-wrapper4 {
-    margin-right: 100px; /* Adjusted the margin to be smaller */
+.icon-wrapper4,
+.icon-wrapper5{
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .col-auto{
@@ -98,8 +83,8 @@ body {
     .icon-wrapper1,
     .icon-wrapper2,
     .icon-wrapper3,
-    .icon-wrapper4 {
-        font-size: 5rem;
+    .icon-wrapper4,
+    .icon-wrapper5{
         margin-bottom: 10px;
     }
 
@@ -109,7 +94,8 @@ body {
     }
 
     .icon-wrapper3,
-    .icon-wrapper4 {
+    .icon-wrapper4,
+    .icon-wrapper5{
         order: 1; /* 下に移動 */
     }
 
