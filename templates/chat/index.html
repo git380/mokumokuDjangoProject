@@ -14,33 +14,45 @@
     <link rel="stylesheet" href="{% static 'chat/index/style.css' %}">
 </head>
 <body>
-<header>
-    <a href="{% url 'home' %}"><i class="bi bi-house"></i></a>
-    <div class="header">
-        <button type="button" class="btn btn-header" data-toggle="modal" data-target="#myModal">
-            <i class="bi bi-person-square chat-members-button"></i>
+<!-- ローディング -->
+<div class="loading">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
+
+    <h2 id="loadingText">Loading</h2>
+</div>
+
+<div id="loaded" style="display: none;">
+    <header>
+        <a href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+        <div class="header">
+            <button type="button" class="btn btn-header" data-toggle="modal" data-target="#myModal">
+                <i class="bi bi-person-square chat-members-button"></i>
+            </button>
+        </div>
+    </header>
+    <input type="hidden" id="idInput" value="{{ user.username }}">
+    <input type="hidden" id="name" value="{{ user.last_name }} {{ user.first_name }}">
+
+    <!-- 投稿内容受け取り -->
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <!-- 入力欄 -->
+    <div class="chat-input">
+        <form action="{% url 'paint' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="uuid" name="uuid" value="{{ uuid }}">
+            <button class="btn btn-primary">
+                <i class="bi bi-brush option-button" id="openOptions"></i>
+            </button>
+        </form>
+        <input type="text" id="message" placeholder="メッセージを入力">
+        <button onclick="sendMessage()" class="btn btn-primary send-button">
+            <i class="bi bi-telegram"></i> 送信
         </button>
     </div>
-</header>
-<input type="hidden" id="idInput" value="{{ user.username }}">
-<input type="hidden" id="name" value="{{ user.last_name }} {{ user.first_name }}">
-
-<!-- 投稿内容受け取り -->
-<div class="chat-messages" id="chatMessages"></div>
-
-<!-- 入力欄 -->
-<div class="chat-input">
-    <form action="{% url 'paint' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" id="uuid" name="uuid" value="{{ uuid }}">
-        <button class="btn btn-primary">
-            <i class="bi bi-brush option-button" id="openOptions"></i>
-        </button>
-    </form>
-    <input type="text" id="message" placeholder="メッセージを入力">
-    <button onclick="sendMessage()" class="btn btn-primary send-button">
-        <i class="bi bi-telegram"></i> 送信
-    </button>
 </div>
 
 <!-- モーダル処理 -->

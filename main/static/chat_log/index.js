@@ -1,3 +1,7 @@
+// ローディング
+document.querySelector('.spinner').style.display = 'block';
+
+// チャット履歴
 let chatHistory;
 
 fetch('http://127.0.0.1:5000/load', {
@@ -32,5 +36,15 @@ fetch('http://127.0.0.1:5000/load', {
         });
     })
     .then(response => response.json())
-    .then(data => chatHistory = data)
-    .catch(error => console.error('エラー:', error));
+    .then(data => {
+        chatHistory = data;
+        // ローディング非表示
+        document.querySelector('.loading').style.display = 'none';
+        document.getElementById('loaded').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('エラー:', error);
+        // ローディング非表示
+        document.querySelector('.loading').style.display = 'none';
+        document.getElementById('loaded').style.display = 'block';
+    });

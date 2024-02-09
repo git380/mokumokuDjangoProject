@@ -12,16 +12,28 @@
     <link rel="stylesheet" href="{% static 'chat_log/style.css' %}">
 </head>
 <body>
-<header>
-    <a href="{% url 'home' %}"><i class="bi bi-house"></i></a>
-</header>
+<!-- ローディング -->
+<div class="loading">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
 
-<input type="hidden" id="client_id" value="{{ user.username }}">
+    <h2 id="loadingText">Loading</h2>
+</div>
 
-<!--グループ名一覧-->
-<div class="chat-list" id="chatList"></div>
-<!-- メッセージ表示 -->
-<div id="chatContent" class="chat-content"></div>
+<div id="loaded" style="display: none;">
+    <header>
+        <a href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+    </header>
+
+    <input type="hidden" id="client_id" value="{{ user.username }}">
+
+    <!--グループ名一覧-->
+    <div class="chat-list" id="chatList"></div>
+    <!-- メッセージ表示 -->
+    <div id="chatContent" class="chat-content"></div>
+</div>
 
 <script src="{% static 'chat_log/index.js' %}"></script>
 </body>

@@ -1,5 +1,8 @@
-const webSocket = new WebSocket('ws://localhost:8765');
+// ローディング
+document.querySelector('.spinner').style.display = 'block';
 
+// WebSocket
+const webSocket = new WebSocket('ws://localhost:8765');
 // WebSocketの接続が開いたときの処理
 webSocket.onopen = () => {
     console.log('WebSocketが開かれました。');
@@ -15,8 +18,16 @@ webSocket.onopen = () => {
                 const data = notionHistory[key];
                 inputContentControl(key, data[0], data[1], data[2], data[3], data[4], data[5]);
             }
+            // ローディング非表示
+            document.querySelector('.loading').style.display = 'none';
+            document.getElementById('loaded').style.display = 'block';
         })
-        .catch(error => console.error('エラー:', error));
+        .catch(error => {
+            console.error('エラー:', error);
+            // ローディング非表示
+            document.querySelector('.loading').style.display = 'none';
+            document.getElementById('loaded').style.display = 'block';
+        });
 };
 // メッセージを受信したときの処理
 webSocket.onmessage = event => {

@@ -9,42 +9,54 @@
     <link rel="stylesheet" href="{% static 'notion/index/style.css' %}">
 </head>
 <body>
-<header>
-    <a href="{% url 'home' %}" class="icon-link"><i class="bi bi-house"></i></a>
-    <input type="text" id="searchInput" class="search" placeholder="検索">
-</header>
+<!-- ローディング -->
+<div class="loading">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
 
-<div class="main-container">
-    <div class="post-container" id="post-container"></div> <!-- 投稿内容を受け取るクラス-->
+    <h2 id="loadingText">Loading</h2>
+</div>
 
-    <!--投稿アイコン-->
-    <button id="open-input" onclick="openInputArea()">
-        <i class="bi bi-pencil"></i>
-    </button>
+<div id="loaded" style="display: none;">
+    <header>
+        <a href="{% url 'home' %}" class="icon-link"><i class="bi bi-house"></i></a>
+        <input type="text" id="searchInput" class="search" placeholder="検索">
+    </header>
 
-    <!--  投稿画面の背景の仕様-->
-    <div class="overlay" id="overlay"></div> <!--　 <button id="open-input" をクリックした後、背景の色を変える -->
+    <div class="main-container">
+        <div class="post-container" id="post-container"></div> <!-- 投稿内容を受け取るクラス-->
 
-    <!--  投稿画面のレイアウト-->
-    <div class="input-form" id="input-form">
-        <!--投稿フォーム-->
-        <div class="input-formBox">
-            <input type="text" id="input-tag" name="input-tag" class="form" placeholder="タグ"/>
-            <input type="text" id="input-title" name="input-title" class="form" placeholder="タイトル"/>
-            <input type="text" id="input-link" name="input-link" class="form" placeholder="リンク"/>
+        <!--投稿アイコン-->
+        <button id="open-input" onclick="openInputArea()">
+            <i class="bi bi-pencil"></i>
+        </button>
 
-            <div class="button-container">
-                <button type="button" id="form-button" onclick="goBack()">戻る</button>
+        <!--  投稿画面の背景の仕様-->
+        <div class="overlay" id="overlay"></div> <!--　 <button id="open-input" をクリックした後、背景の色を変える -->
 
-                <button type="button" id="form-button" onclick="sendMessage()">
-                    <i class="bi bi-send-check"></i> 投稿
-                </button>
+        <!--  投稿画面のレイアウト-->
+        <div class="input-form" id="input-form">
+            <!--投稿フォーム-->
+            <div class="input-formBox">
+                <input type="text" id="input-tag" name="input-tag" class="form" placeholder="タグ"/>
+                <input type="text" id="input-title" name="input-title" class="form" placeholder="タイトル"/>
+                <input type="text" id="input-link" name="input-link" class="form" placeholder="リンク"/>
+
+                <div class="button-container">
+                    <button type="button" id="form-button" onclick="goBack()">戻る</button>
+
+                    <button type="button" id="form-button" onclick="sendMessage()">
+                        <i class="bi bi-send-check"></i> 投稿
+                    </button>
+                </div>
             </div>
+            <!--?ボタン-->
+            <a href="{% url 'support_page' %}" id="help-link" target="_blank">
+                <i class="bi bi-question-circle" id="help-icon"></i>
+            </a>
         </div>
-        <!--?ボタン-->
-        <a href="{% url 'support_page' %}" id="help-link" target="_blank">
-            <i class="bi bi-question-circle" id="help-icon"></i>
-        </a>
     </div>
 </div>
 

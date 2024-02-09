@@ -1,3 +1,7 @@
+// ローディング
+document.querySelector('.spinner').style.display = 'block';
+
+// WebSocket
 const webSocket = new WebSocket('ws://localhost:8124');
 // WebSocketの接続が開いたときの処理
 webSocket.onopen = () => {
@@ -13,8 +17,16 @@ webSocket.onopen = () => {
             notionHistory[document.getElementById('uuid').value].forEach(msg => {
                 drawLine(msg[0], msg[1], msg[2], msg[3], msg[4], msg[5]);
             });
+            // ローディング非表示
+            document.querySelector('.loading').style.display = 'none';
+            document.getElementById('loaded').style.display = 'block';
         })
-        .catch(error => console.error('エラー:', error));
+        .catch(error => {
+            console.error('エラー:', error);
+            // ローディング非表示
+            document.querySelector('.loading').style.display = 'none';
+            document.getElementById('loaded').style.display = 'block';
+        });
 };
 // サーバからのメッセージを受信したときのイベントハンドラ
 webSocket.onmessage = function (event) {
