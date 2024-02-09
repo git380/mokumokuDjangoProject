@@ -18,10 +18,10 @@
 <div class="container">
     <label for="inputField">グループ名をきめてください</label>
     <input type="text" id="group_name" placeholder="グループ名を入力してください">
-    <form action="{% url 'chat' %}" method="post">
+    <button onclick="sendJsonData()">グループ作成</button>
+    <form id="chatForm" action="{% url 'chat' %}" method="post">
         {% csrf_token %}
         <input type="hidden" id="uuid" name="uuid" value="{{ uuid }}">
-        <button onclick="sendJsonData()">グループ作成</button>
     </form>
 </div>
 
@@ -38,6 +38,9 @@
                 document.getElementById('group_name').value
             ])
         })
+            .then(response => {
+                document.getElementById('chatForm').submit();
+            })
             .catch(error => {
                 alert('作成に失敗しました')
                 console.error('Error:', error);

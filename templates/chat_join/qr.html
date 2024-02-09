@@ -65,9 +65,6 @@
             const code = jsQR(imageData.data, imageData.width, imageData.height, {inversionAttempts: 'dontInvert'});
             // QR コードが検出され、まだ読み取っていない場合
             if (code && !isReadQR) {
-                // chatのQRコードだった場合
-                // if (code.data === 'aaa')
-
                 // QR コードの内容に基づいてページをリダイレクト
                 location.href = code.data;
                 isReadQR = true; // 読み取りフラグをセット

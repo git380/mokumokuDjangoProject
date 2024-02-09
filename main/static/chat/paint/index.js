@@ -1,4 +1,4 @@
-const webSocket = new WebSocket("ws://localhost:8124");
+const webSocket = new WebSocket('ws://localhost:8124');
 // WebSocketの接続が開いたときの処理
 webSocket.onopen = () => {
     console.log('WebSocketが開かれました。');
