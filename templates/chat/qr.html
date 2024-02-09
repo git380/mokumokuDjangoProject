@@ -32,11 +32,7 @@
 </head>
 <body class="container mt-5">
 <div id="qrcode"></div>
-<form action="{% url 'chat' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="uuid" value="{{ uuid }}">
-    <button class="btn btn-primary">戻る</button>
-</form>
+<a href="{% url 'chat' %}"><button class="btn btn-primary">戻る</button></a>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     new QRCode("qrcode").makeCode('http://localhost:8000/chat_join_qr/{{ uuid }}');
